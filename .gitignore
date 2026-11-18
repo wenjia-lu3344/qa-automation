@@ -1,0 +1,10 @@
+.venv/
+__pycache__/
+.pytest_cache/
+_healing/
+playwright-report/
+test-results/
+.env
+*.pyc
+docs/heal-audit.jsonl
+docs/heal-report.html
