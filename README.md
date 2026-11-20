@@ -6,6 +6,16 @@ A conservative Python Playwright failure-capture and AI-assisted locator-repair 
 - [日本語説明](README.ja.md)
 - [English documentation](README.en.md)
 
+## Development Roadmap
+
+This personal open-source QA automation project is a working proof of concept for Playwright failure capture, locator diagnosis, human-reviewed repair proposals, and an opt-in repair-and-rollback workflow.
+
+The next development cycle focuses on reliability and safety, broader locator support, pytest integration, automated regression tests and CI, and more useful reporting.
+
+**Estimated remaining development effort: 38–54 hours.** These are planning estimates for future work, not completed hours.
+
+See the [Development Roadmap](ROADMAP.md) for individual tasks, time estimates, and acceptance criteria.
+
 ## Quick start
 
 ```bash
@@ -29,7 +39,7 @@ Never commit `_healing/`, screenshots, authenticated sessions, secrets, or test 
 
 ```bash
 python tools/heal_pipeline.py examples/failing_locator.py
-# Review the proposal and test against the intended button before changing code.
+# Review the proposal and test against the intended button.
 # Recommended: duplicate the failing sample first to keep it failing in this repository.
 python tools/heal_pipeline.py examples/failing_locator.py --apply
 python -m pytest -q
@@ -38,16 +48,3 @@ python -m pytest -q
 `--apply` modifies only an explicitly supported, unambiguous, single-line button locator. It reruns the script and **rolls back if validation fails**. Never use `--apply` blindly on a real system. See [implementation improvements](docs/IMPROVEMENTS.md).
 
 Screenshot-inspired entry point: `python tools/heal_runner.py demo.py` (expected failure). Other samples include `examples/failing_strict_mode.py` (ambiguous locator, never blind-repair).
-
-## Upload to your own GitHub repository
-
-```bash
-git init
-git branch -M main
-git add .
-git commit -m "feat: add Playwright locator healing toolkit"
-git remote add origin https://github.com/wenjia-lu3344/qa-automation.git
-git push -u origin main
-```
-
-Run the commands **inside the extracted `qa-automation` folder**. If `origin` or `main` already exist, inspect first; do not blindly overwrite history.
